@@ -158,12 +158,21 @@ def get_requestless_setting(setting_group, setting, journal):
         journal,
     )
 
-
 def save_setting(setting_group_name, setting_name, journal, value):
-    setting = core_models.Setting.objects.get(
-        name=setting_name,
-        group__name=setting_group_name,
-    )
+    try:
+        setting = core_models.Setting.objects.get(
+            name=setting_name,
+            group__name=setting_group_name,
+        )
+    except core_models.Setting.DoesNotExist:
+        logger.exception(
+            "MISSING SETTING: group=%r name=%r journal=%r",
+            setting_group_name,
+            setting_name,
+            journal,
+        )
+        raise
+
     lang = (
         translation.get_language()
         if setting.is_translatable
@@ -172,25 +181,18 @@ def save_setting(setting_group_name, setting_name, journal, value):
 
     with translation.override(lang):
         setting_value, created = core_models.SettingValue.objects.get_or_create(
-            setting__group=setting.group, setting=setting, journal=journal
+            setting=setting,
+            journal=journal,
+            defaults={
+                "value": value,
+            },
         )
 
-        if created:
-            # Ensure that a value exists for settings.LANGUAGE_CODE
-            setattr(setting, "value_{0}".format(settings.LANGUAGE_CODE), "")
+        if not created:
+            setting_value.value = value
             setting_value.save()
 
-        if setting.types == "json" and isinstance(value, (list, dict)):
-            value = json.dumps(value)
-
-        if setting.types == "boolean":
-            value = "on" if value else ""
-
-        setting_value.value = value
-        setting_value.save()
-
-        return setting_value
-
+    return setting_value
 
 def save_plugin_setting(plugin, setting_name, value, journal):
     plugin_group_name = "plugin:{plugin_name}".format(plugin_name=plugin.name)

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/static/common/xslt/sitemap.xsl"?>
+<urlset
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/siteindex.xsd"
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:janeway="https://janeway.systems">
+  <janeway:sitemap_name>
+    Volume 1 Issue 1 2026 in press - Onyx Journal of Arts &amp; Visual Culture
+  </janeway:sitemap_name>
+  <janeway:higher_sitemap>
+    <janeway:loc>
+      https://iranictech.ir/ISFSEA/sitemap.xml
+    </janeway:loc>
+    <janeway:loc_label>
+      Onyx Journal of Arts &amp; Visual Culture
+    </janeway:loc_label>
+  </janeway:higher_sitemap>
+  
+    <url>
+      <loc>https://iranictech.ir/ISFSEA/article/id/1/</loc>
+      <lastmod>2026-08-16T06:49:00.101929+00:00</lastmod>
+      <changefreq>monthly</changefreq>
+      <janeway:loc_label>Few-Shot EEG Speech Imagery Classification with Hybrid Self-Supervised and Meta-Learning</janeway:loc_label>
+    </url>
+  
+</urlset>

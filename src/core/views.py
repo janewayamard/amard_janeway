@@ -63,6 +63,8 @@ from utils.shared import language_override_redirect, clear_cache
 from repository import models as rm
 from events import logic as events_logic
 
+from django.utils.http import url_has_allowed_host_and_scheme
+from django.views.decorators.http import require_POST
 
 logger = get_logger(__name__)
 
@@ -716,6 +718,39 @@ def public_profile(request, uuid):
         context["staff_groups"] = user.staffgroupmember_set.all()
 
     return render(request, template, context)
+
+
+@login_required
+@require_POST
+def switch_active_role(request, role_slug):
+    if not getattr(request, "journal", None):
+        raise Http404("Active roles are only available on a journal site.")
+
+    account_role = get_object_or_404(
+        models.AccountRole.objects.select_related("role"),
+        user=request.user,
+        journal=request.journal,
+        role__slug=role_slug,
+    )
+
+    active_roles = request.session.get("janeway_active_roles", {})
+
+    if not isinstance(active_roles, dict):
+        active_roles = {}
+
+    active_roles[str(request.journal.pk)] = account_role.role.slug
+    request.session["janeway_active_roles"] = active_roles
+
+    next_url = request.POST.get("next") or request.META.get("HTTP_REFERER")
+
+    if next_url and url_has_allowed_host_and_scheme(
+        next_url,
+        allowed_hosts={request.get_host()},
+        require_https=request.is_secure(),
+    ):
+        return redirect(next_url)
+
+    return redirect(reverse("core_dashboard"))
 
 
 @login_required

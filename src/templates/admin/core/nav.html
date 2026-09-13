@@ -13,7 +13,7 @@
     <ul class="vertical menu">
         <li class="title">
             <a href="#">
-                <i class="fa fa-chevron-circle-down action-icon">&nbsp;</i> Janeway
+                <i class="fa fa-chevron-circle-down action-icon">&nbsp;</i> REAPRESS
             </a>
         </li>
         {% if journal_settings.general.switch_language %}
@@ -152,8 +152,8 @@
     <header class="main-header" role="banner">
         <div class="row expanded">
             <div class="small-3 columns hide-for-large">
-                <button type="button" class="button hide-for-large" data-toggle="offCanvas"><img
-                        src="{% static "admin/img/icons/menu-toggle.svg" %}" alt="Menu"> Menu
+                <button type="button" class="button hide-for-large" data-toggle="offCanvas"><img src="{% static "
+                        admin/img/icons/menu-toggle.svg" %}" alt="Menu"> Menu
                 </button>
                 &nbsp;
             </div>
@@ -178,15 +178,47 @@
                         {% if not journal_settings.general.disable_journal_submission %}
                         <li><a href="{% url 'submission_start' %}">Submit</a></li>
                         {% endif %}
+
                         <li><a href="{% url 'core_edit_profile' %}">Profile</a></li>
+
+                        {% if request.journal_roles %}
+                        <li class="subtitle">
+                            <a href="#">Switch Role</a>
+                        </li>
+
+                        {% for account_role in request.journal_roles %}
+                        <li>
+                            <form action="{% url 'core_switch_active_role' account_role.role.slug %}" method="post"
+                                style="margin: 0;">
+                                {% csrf_token %}
+                                <input type="hidden" name="next" value="{{ request.get_full_path }}">
+
+                                <button type="submit"
+                                    style="width: 100%; text-align: left; background: none; border: 0; padding: 0.7rem 1rem; cursor: pointer;">
+                                    {% if request.active_role_slug == account_role.role.slug %}
+                                    <strong>✓ {{ account_role.role.name }}</strong>
+                                    {% else %}
+                                    {{ account_role.role.name }}
+                                    {% endif %}
+                                </button>
+                            </form>
+                        </li>
+                        {% endfor %}
+                        {% endif %}
+
                         {% if request.user.is_staff or editor %}
                         <li><a href="{% url 'core_manager_index' %}">Manager</a></li>
                         {% endif %}
+
                         {% if request.user.is_staff %}
                         <li><a href="/admin/">Admin</a></li>
                         {% endif %}
+
                         <li><a href="{% url 'core_logout' %}">Logout</a></li>
                     </ul>
+
+
+
                 </div>
                 {% endif %}
             </div>

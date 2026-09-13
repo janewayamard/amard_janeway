@@ -786,50 +786,83 @@ class Account(AbstractBaseUser, PermissionsMixin):
             role__slug="journal-manager",
         ).exists()
 
+
+    def has_active_role(self, request, role, staff_override=True):
+        """
+        Check whether the user is operating under the requested active role.
+        """
+        if not self.is_authenticated:
+            return False
+
+        active_role_slug = getattr(request, "active_role_slug", None)
+
+        if active_role_slug:
+            return (
+                AccountRole.objects.filter(
+                    user=self,
+                    journal=request.journal,
+                    role__slug=role,
+                ).exists()
+                and active_role_slug == role
+            )
+
+        return self.check_role(
+            request.journal,
+            role,
+            staff_override=staff_override,
+        )
+
+
     def is_editor(self, request, journal=None):
-        if not journal:
-            return self.check_role(request.journal, "editor")
-        else:
+        if journal is not None:
             return self.check_role(journal, "editor")
 
+        return self.has_active_role(request, "editor")
+
+
     def is_section_editor(self, request):
-        return self.check_role(request.journal, "section-editor")
+        return self.has_active_role(request, "section-editor")
+
 
     def has_an_editor_role(self, request):
-        editor = self.is_editor(request)
-        section_editor = self.is_section_editor(request)
+        return self.is_editor(request) or self.is_section_editor(request)
 
-        if editor or section_editor:
-            return True
-
-        return False
 
     def is_reviewer(self, request):
-        return self.check_role(request.journal, "reviewer")
+        return self.has_active_role(request, "reviewer")
+
 
     def is_author(self, request):
-        return self.check_role(request.journal, "author")
+        return self.has_active_role(request, "author")
+
 
     def is_proofreader(self, request):
-        return self.check_role(request.journal, "proofreader")
+        return self.has_active_role(request, "proofreader")
+
 
     def is_production(self, request):
-        return self.check_role(request.journal, "production")
+        return self.has_active_role(request, "production")
+
 
     def is_copyeditor(self, request):
-        return self.check_role(request.journal, "copyeditor")
+        return self.has_active_role(request, "copyeditor")
+
 
     def is_typesetter(self, request):
-        return self.check_role(request.journal, "typesetter")
+        return self.has_active_role(request, "typesetter")
+
 
     def is_proofing_manager(self, request):
-        return self.check_role(request.journal, "proofing-manager")
+        return self.has_active_role(request, "proofing-manager")
 
-    def is_repository_manager(self, repository):
-        if self in repository.managers.all():
-            return True
 
-        return False
+    def is_reader(self, request):
+        return self.has_active_role(
+            request,
+            "reader",
+            staff_override=False,
+        )
+
 
     def is_preprint_editor(self, request):
         if self in request.press.preprint_editors():

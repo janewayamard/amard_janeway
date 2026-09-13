@@ -1,0 +1,1 @@
+Environment=HOME=/var/www/janeway PATH=/var/www/janeway/venv/bin JANEWAY_EMAIL_HOST=mail.iranictech.ir JANEWAY_EMAIL_PORT=587 JANEWAY_EMAIL_HOST_USER=no-reply@iranictech.ir JANEWAY_EMAIL_HOST_PASSWORD=R@MS@R2270001028M@hmouD JANEWAY_EMAIL_USE_TLS=True

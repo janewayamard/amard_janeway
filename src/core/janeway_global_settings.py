@@ -52,6 +52,7 @@ FILE_UPLOAD_PERMISSIONS = 0o644
 
 INSTALLED_APPS = [
     "modeltranslation",
+    'django.contrib.sites',
     "apps.JanewayAdminConfig",
     "django.contrib.auth",
     "django.contrib.sessions",
@@ -117,6 +118,7 @@ MIDDLEWARE = (
     "django.middleware.security.SecurityMiddleware",
     "core.middleware.TimezoneMiddleware",
     "core.middleware.SiteSettingsMiddleware",
+    "core.middleware.ActiveRoleMiddleware",
     "core.middleware.MaintenanceModeMiddleware",
     "cron.middleware.CronMiddleware",
     "core.middleware.CounterCookieMiddleware",
@@ -452,7 +454,7 @@ EMAIL_BACKEND = (
     or "django.core.mail.backends.smtp.EmailBackend"
 )
 EMAIL_HOST = os.environ.get("JANEWAY_EMAIL_HOST", "")
-EMAIL_PORT = os.environ.get("JANEWAY_EMAIL_PORT", "")
+EMAIL_PORT = os.environ.get("JANEWAY_EMAIL_PORT", 587)
 EMAIL_HOST_USER = os.environ.get("JANEWAY_EMAIL_HOST_USER", "")
 EMAIL_HOST_PASSWORD = os.environ.get("JANEWAY_EMAIL_HOST_PASSWORD", "")
 EMAIL_USE_TLS = os.environ.get("JANEWAY_EMAIL_USE_TLS", True)

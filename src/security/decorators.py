@@ -207,7 +207,7 @@ def proofing_manager_roles(func):
 def role_can_access(access_setting):
     """
     This decorator determines if a user can access a given view based on the
-    roles that are allowed to access it.
+    active role selected for the current Journal.
     """
 
     def decorator(func):
@@ -222,13 +222,10 @@ def role_can_access(access_setting):
                 journal=request.journal,
             )
 
-            journal_roles = request.user.roles.get(request.journal.code) or set()
+            active_role = getattr(request, "active_role_slug", None)
             setting_roles = set(setting.processed_value or [])
 
-            # If no roles for the setting are configured we deny access
-            # in the event that we want all roles to have access they
-            # should be explicitly defined.
-            if setting_roles and journal_roles.intersection(setting_roles):
+            if active_role and active_role in setting_roles:
                 return func(request, *args, **kwargs)
 
             deny_access(request)

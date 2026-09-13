@@ -1,14 +1,49 @@
 {% load svg from press_url %}
-<div class="row expanded">
-    <div class="col m2">
-        {% svg request.press_cover %}
+<footer>
+    <div class="wrap">
+        <div class="grid">
+
+            <!-- Brand -->
+            <div class="brand-col">
+                <div class="brand-logo">
+                    {% svg request.press_cover %}
+                </div>
+
+                <p class="footer-description">
+                    <small>
+                        {{ press.footer_description|default:""|safe }}
+                    </small>
+                </p>
+            </div>
+
+
+        <!-- Bottom Bar -->
+        <div class="bottom-bar">
+
+            <p class="copyright">
+                © {% now "Y" %} {{ press.name|default:"" }} · All Rights Reserved
+            </p>
+
+            <ul class="legal-links list-inline">
+                <li class="list-inline-item">
+                    <a href="/site/privacy/">Privacy Policy</a>
+                </li>
+
+                <li class="list-inline-item">
+                    <a href="/sitemap.xml">Sitemap</a>
+                </li>
+
+                <li class="list-inline-item">
+                    <a href="/contact/">Contact</a>
+                </li>
+
+                <li class="list-inline-item">
+                    <a href="{% url 'accessibility' %}">
+                        {% trans "Accessibility" %}
+                    </a>
+                </li>
+            </ul>
+
+        </div>
     </div>
-    <div class="col m8">
-        <p><small>{{ press.footer_description|default:""|safe }}</small></p>
-    </div>
-    <div class="col m2">
-        <ul class="list-inline-bar">
-            <li><a href="{% url 'accessibility' %}">{% trans "Accessibility" %}</a></li>
-        </ul>
-    </div>
-</div>
+</footer>

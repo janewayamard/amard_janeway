@@ -26,7 +26,9 @@
             <div class="card-text padding-block-1 padding-inline-1">
                         <p class="text-uppercase">{{ article.section.name }}</p>
                         <h1 class="card-title align-text-bottom article-title">{{ article.title|safe }}</h1>
-                        {% include "elements/journal/article_authors_compact.html" with limit=10 %}
+                        {% if article.is_published or proofing %}
+                          {% include "common/elements/journal/article_authors_br.html" %}
+                        {% endif %}
             </div>
           </div>
         </div>
@@ -121,8 +123,15 @@
             <section aria-label="{% trans 'Article Information' %}">
             <div class="article-menu">
                 {% include "common/elements/altmetric_badges.html" with article=article %}
-                {% if article.is_published or proofing %}
-                  {% include "elements/journal/share.html" %}
+                {% if journal_settings.article.disable_article_large_image %}
+                  <h2>
+                    {% blocktrans count counter=article.frozen_authors.count %}
+                      Author
+                    {% plural %}
+                      Authors
+                    {% endblocktrans %}
+                  </h2>
+                  {% include "common/elements/journal/article_authors_ul.html" %}
                 {% endif %}
                 <h2>Author details</h2>
                 {% include "elements/journal/article_authors_full.html" %}

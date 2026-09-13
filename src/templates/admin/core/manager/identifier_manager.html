@@ -115,7 +115,7 @@
                             </td>
                             <td>
                                 {% if doi %}
-                                    <a class="small button" href="{% external_journal_url article_journal 'show_doi' article.pk doi.pk %}">
+                                    <a class="small button" href="{% external_journal_url article_journal 'show_doi' 'article' article.pk doi.pk %}">
                                         {% if doi.crossrefstatus.latest_deposit.document %}
                                             View XML
                                         {% elif doi %}

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/static/common/xslt/sitemap.xsl"?>
+<sitemapindex
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/siteindex.xsd"
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:janeway="https://janeway.systems">
+  <janeway:sitemap_name>
+    Onyx Journal of Arts &amp; Visual Culture
+  </janeway:sitemap_name>
+  <janeway:higher_sitemap>
+    <janeway:loc>
+      https://iranictech.ir/sitemap.xml
+    </janeway:loc>
+    <janeway:loc_label>
+      Onyx Events
+    </janeway:loc_label>
+  </janeway:higher_sitemap>
+  <sitemap>
+    <urlset>
+      
+        <url>
+  <loc>https://iranictech.ir/ISFSEA/</loc>
+  
+    <janeway:loc_label>Home</janeway:loc_label>
+  
+</url>
+
+      
+      
+        <url>
+  <loc>https://iranictech.ir/ISFSEA/news/</loc>
+  
+    <janeway:loc_label>News</janeway:loc_label>
+  
+</url>
+
+      
+      
+      
+        <url>
+  <loc>https://iranictech.ir/ISFSEA/articles/</loc>
+  
+    <janeway:loc_label>Articles</janeway:loc_label>
+  
+</url>
+
+      
+      
+        <url>
+  <loc>https://iranictech.ir/ISFSEA/issues/</loc>
+  
+    <janeway:loc_label>Issues</janeway:loc_label>
+  
+</url>
+
+      
+      
+      
+        <url>
+  <loc>https://iranictech.ir/ISFSEA/submissions/</loc>
+  
+    <janeway:loc_label>Submissions</janeway:loc_label>
+  
+</url>
+
+      
+      
+        <url>
+  <loc>https://iranictech.ir/ISFSEA/contact/</loc>
+  
+    <janeway:loc_label>Contact</janeway:loc_label>
+  
+</url>
+
+      
+      
+        <url>
+  <loc>https://iranictech.ir/ISFSEA/submit/start/</loc>
+  
+    <janeway:loc_label>Start submission</janeway:loc_label>
+  
+</url>
+
+      
+      
+        <url>
+  <loc>https://iranictech.ir/ISFSEA/reviewer/</loc>
+  
+    <janeway:loc_label>Become a reviewer</janeway:loc_label>
+  
+</url>
+
+      
+      <url>
+  <loc>https://iranictech.ir/ISFSEA/login/</loc>
+  
+    <janeway:loc_label>Log in</janeway:loc_label>
+  
+</url>
+
+      <url>
+  <loc>https://iranictech.ir/ISFSEA/register/step/1/</loc>
+  
+    <janeway:loc_label>Register</janeway:loc_label>
+  
+</url>
+
+      
+      
+    </urlset>
+  </sitemap>
+  
+    <sitemap>
+      <loc>https://iranictech.ir/ISFSEA/issue/1_sitemap.xml</loc>
+      <janeway:loc_label>Volume 1 Issue 1 2026 in press</janeway:loc_label>
+    </sitemap>
+  
+</sitemapindex>

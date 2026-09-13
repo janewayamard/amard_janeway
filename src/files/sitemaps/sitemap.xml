@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/static/common/xslt/sitemap.xsl"?>
+<sitemapindex
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/siteindex.xsd"
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:janeway="https://janeway.systems">
+  <janeway:sitemap_name>
+    Onyx Events
+  </janeway:sitemap_name>
+  <sitemap>
+    <urlset>
+      <url>
+  <loc>https://iranictech.ir/</loc>
+  
+    <janeway:loc_label>Home</janeway:loc_label>
+  
+</url>
+
+      
+      
+        <url>
+  <loc>https://iranictech.ir/journals/</loc>
+  
+    <janeway:loc_label>Journals</janeway:loc_label>
+  
+</url>
+
+      
+      
+      
+      <url>
+  <loc>https://iranictech.ir/contact/</loc>
+  
+    <janeway:loc_label>Contact</janeway:loc_label>
+  
+</url>
+
+      <url>
+  <loc>https://iranictech.ir/login/</loc>
+  
+    <janeway:loc_label>Log in</janeway:loc_label>
+  
+</url>
+
+      <url>
+  <loc>https://iranictech.ir/register/step/1/</loc>
+  
+    <janeway:loc_label>Register</janeway:loc_label>
+  
+</url>
+
+      
+        <url>
+          <loc>https://iranictech.ir/news/1/</loc>
+          <lastmod>2026-07-03T08:45:24.560971+00:00</lastmod>
+          <janeway:loc_label>🧠 Onyx Press Launches the Journal of Cognitive Science</janeway:loc_label>
+        </url>
+      
+    </urlset>
+  </sitemap>
+  
+    
+      <sitemap>
+        <loc>https://iranictech.ir/ojavc/sitemap.xml</loc>
+        <janeway:loc_label>TEST</janeway:loc_label>
+      </sitemap>
+    
+      <sitemap>
+        <loc>https://iranictech.ir/ua/sitemap.xml</loc>
+        <janeway:loc_label>Uncertainty Analytics</janeway:loc_label>
+      </sitemap>
+    
+    
+  
+</sitemapindex>
