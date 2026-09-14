@@ -3,9 +3,16 @@ __author__ = "Martin Paul Eve & Andy Byers"
 __license__ = "AGPL v3"
 __maintainer__ = "Birkbeck Centre for Technology and Publishing"
 
-import resource
 import threading
 import time
+
+try:
+    import resource
+except ImportError:
+    resource = None
+
+
+
 from utils.logger import get_logger
 
 logger = get_logger(__name__)
@@ -75,6 +82,9 @@ class TimeMonitoring(BaseMiddleware):
 
     @staticmethod
     def _get_usage():
+        if resource is None:
+            return (time.time(), 0, 0)
+
         try:
             try:
                 utime, stime, *_ = resource.getrusage(resource.RUSAGE_THREAD)
